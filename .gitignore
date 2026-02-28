@@ -1,0 +1,10 @@
+.vs/ 
+Backup/ 
+out/ 
+tmp/ 
+*.user 
+UpgradeLog.htm 
+MSG*.bin 
+messages.h 
+messages.rc 
+version.h 

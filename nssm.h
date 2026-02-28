@@ -59,7 +59,7 @@
 #include "registry.h"
 #include "settings.h"
 #include "io.h"
-#include "gui.h"
+
 #endif
 
 void nssm_exit(int);

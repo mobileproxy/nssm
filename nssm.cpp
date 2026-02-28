@@ -173,9 +173,29 @@ void strip_basename(TCHAR *buffer) {
 
 /* How to use me correctly */
 int usage(int ret) {
-  if ((! GetConsoleWindow() || ! GetStdHandle(STD_OUTPUT_HANDLE)) && GetProcessWindowStation()) popup_message(0, MB_OK, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
-  else print_message(stderr, NSSM_MESSAGE_USAGE, NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
-  return(ret);
+    fflush(stdout);
+    
+    _tprintf(_T("NSSM %s %s %s\n\n"), NSSM_VERSION, NSSM_CONFIGURATION, NSSM_DATE);
+    _tprintf(_T("Usage: nssm <command> [<args>]\n\n"));
+    _tprintf(_T("Commands:\n"));
+    _tprintf(_T("  install <servicename> <app> [<args>]  - Install a service\n"));
+    _tprintf(_T("  remove <servicename> confirm           - Remove a service\n"));
+    _tprintf(_T("  start <servicename>                    - Start a service\n"));
+    _tprintf(_T("  stop <servicename>                     - Stop a service\n"));
+    _tprintf(_T("  restart <servicename>                  - Restart a service\n"));
+    _tprintf(_T("  status <servicename>                   - Query service status\n"));
+    _tprintf(_T("  statuscode <servicename>               - Query service status code\n"));
+    _tprintf(_T("  pause <servicename>                    - Pause a service\n"));
+    _tprintf(_T("  continue <servicename>                 - Continue a service\n"));
+    _tprintf(_T("  rotate <servicename>                   - Trigger log rotation\n"));
+    _tprintf(_T("  get <servicename> <parameter>          - Get a service parameter\n"));
+    _tprintf(_T("  set <servicename> <parameter> <value>  - Set a service parameter\n"));
+    _tprintf(_T("  reset <servicename> <parameter>        - Reset a service parameter\n"));
+    _tprintf(_T("  dump <servicename>                     - Dump service configuration\n"));
+    _tprintf(_T("  list                                   - List managed services\n"));
+    _tprintf(_T("  processes <servicename>                - Show process tree\n"));
+    _tprintf(_T("  version                                - Show version\n"));
+    return(ret);
 }
 
 void check_admin() {
