@@ -138,7 +138,7 @@ static int setting_dump_string(const TCHAR *service_name, void *param, const TCH
   }
   else quoted_additional[0] = _T('\0');
 
-  unsigned long type = (unsigned long) param;
+  unsigned long type = (unsigned long)(ULONG_PTR)param;
   if (is_string_type(type)) {
     if (_tcslen(value->string)) {
       if (quote(value->string, quoted_value, _countof(quoted_value))) return 2;
@@ -1393,7 +1393,7 @@ int dump_setting(const TCHAR *service_name, HKEY key, SC_HANDLE service_handle, 
   if (setting->native) ret = get_setting(service_name, service_handle, setting, &value, 0);
   else ret = get_setting(service_name, key, setting, &value, 0);
   if (ret != 1) return ret;
-  return setting_dump_string(service_name, (void *) setting->type, setting->name, &value, 0);
+  return setting_dump_string(service_name, (void*)(ULONG_PTR)setting->type, setting->name, &value, 0);
 }
 
 settings_t settings[] = {
